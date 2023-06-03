@@ -1,5 +1,6 @@
 # MERN Stack Authentication
 
+<<<<<<< HEAD
 👉 This repository provides a concise implementation of user authentication using the MERN stack (MongoDB, Express.js, React, and Node.js).
 
 ## Live Demo
@@ -22,13 +23,38 @@ Protected routes that require authentication.
 🚀 **Node.js**: A JavaScript runtime for running server-side code.  
 🚀 **Bcrypt.js**: A library for hashing and salting passwords.  
 🚀 **Jsonwebtoken**: A library for generating and verifying JSON Web Tokens.
+=======
+
+👉 This repository provides a concise implementation of user authentication using the MERN stack (MongoDB, Express.js, React, and Node.js). 
+
+## Live Demo
+hosted : upcoming
+
+## 🌐 Features
+👉 User registration with email and password.  
+👉 User login with email and password.  
+👉 JSON Web Token (JWT) generation and verification
+ Protected routes that require authentication.  
+👉 Logout functionality
+## 🖥️ Technologies Used
+🚀 **MongoDB**: A NoSQL database for storing user data.
+🚀 **Express.js**: A web application framework for      building server-side APIs.  
+🚀 **React**: A JavaScript library for building user  interfaces.      
+🚀 **Node.js**: A JavaScript runtime for running server-side code.  
+🚀 **Bcrypt.js**: A library for hashing and salting passwords.   
+🚀 **Jsonwebtoken**: A library for generating and verifying JSON Web Tokens.  
+>>>>>>> 08b9295afe2a0733b12ff50d3b27d6a5aa16471b
 
 ⚙️ **Setup Instructions
 Clone the repository:**
 
 bash
 Copy code
+<<<<<<< HEAD
 git clone https://github.com/anujnainwal/authentication.git
+=======
+git clone https://github.com/anujnainwal/authentication.git 
+>>>>>>> 08b9295afe2a0733b12ff50d3b27d6a5aa16471b
 
 Install dependencies:
 
@@ -58,17 +84,24 @@ Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to create a pull request.
 
 ## License
+<<<<<<< HEAD
 
 This project is licensed under the MIT License.
 
 ## Acknowledgements
 
+=======
+ This project is licensed under the MIT License.
+
+## Acknowledgements
+>>>>>>> 08b9295afe2a0733b12ff50d3b27d6a5aa16471b
 This project was inspired by the need for a simple and secure user authentication implementation using the MERN stack. Special thanks to the open-source community for providing the necessary tools and resources to build this solution.
 
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
+<<<<<<< HEAD
 `NODE_PRODUCTION`:  
  `MONGO_URL`: your database url
 `PORT`: your port
@@ -80,3 +113,16 @@ To run this project, you will need to add the following environment variables to
  `HOST`: gmail.com  
  `SERVICE`: gmail.com  
  `MAIL_PORT`: 587
+=======
+ `NODE_PRODUCTION`:   
+  `MONGO_URL`:  your database url
+  `PORT`:  your port
+  `ACCESS_TOKEN`:  your secret key  
+  `ACCESS_TOKEN_EXPIRY`: your expire key
+  `REFRESH_TOKEN_EXPIRY`:   your expire key  
+  `NODE_USER`: your gmail address  
+  `NODE_PASS`: password  
+  `HOST`:  gmail.com  
+  `SERVICE`: gmail.com  
+  `MAIL_PORT`: 587
+>>>>>>> 08b9295afe2a0733b12ff50d3b27d6a5aa16471b
