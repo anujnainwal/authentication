@@ -3,10 +3,8 @@ import {
   Box,
   Grid,
   FormControl,
-  InputLabel,
   InputAdornment,
   IconButton,
-  OutlinedInput,
   Button,
   Typography,
   TextField,
@@ -41,7 +39,7 @@ const Register = () => {
     <Box sx={{ height: "100vh" }}>
       <Grid container>
         <Grid item xs={12} sm={5} md={5} lg={5}>
-          {/* Left side content */}
+         
           <Box component="div" className="registerContent">
             <div className="registerUrlSet">
               <form onSubmit={handleSubmit(onSubmit)}>
