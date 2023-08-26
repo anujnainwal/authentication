@@ -10,16 +10,16 @@ import {
   TextField,
 } from "@mui/material";
 import "./assets/css/login.css";
-import RegisterImage from "./assets/image/login.jpg";
-import logo from "./assets/image/login.jpg";
-import { FaUserAlt, FaEye, FaEyeSlash, FaFacebookSquare } from "react-icons/fa";
+import LoginImage from "./assets/image/logo.jpg";
+import logo from "./assets/image/login.png";
+import {  FaEye, FaEyeSlash, FaFacebookSquare } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-   let [showPassword, setShowPassword] = useState(false);
+  let [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -39,7 +39,6 @@ const Login = () => {
     <Box sx={{ height: "100vh" }}>
       <Grid container>
         <Grid item xs={12} sm={5} md={5} lg={5}>
-         
           <Box component="div" className="registerContent">
             <div className="registerUrlSet">
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -47,10 +46,10 @@ const Login = () => {
                   <img src={logo} style={{ width: 100 }} />
                 </div>
                 <div className="userHeading">
-                  <h1>Create an Account</h1>
-                  <p>Continue where you left off</p>
+                  <h1> Sign In</h1>
+                  <p>Please login to your account</p>
                 </div>
-              
+
                 <div className="formControl">
                   <FormControl fullWidth>
                     <TextField
@@ -120,7 +119,10 @@ const Login = () => {
                       fullWidth
                     />
                   </FormControl>
-                  
+                  <Typography  sx={{margin:'15px 0',color:'#FF9F43 !important'}}>
+                    <Link to="/forgotPassword">Forgot Password?</Link>
+                  </Typography>
+
                   <Box component="div" sx={{ margin: "30px 0 0 0" }}>
                     <Button
                       style={{ color: "#fff" }}
@@ -195,9 +197,9 @@ const Login = () => {
         <Grid item xs={7} sx={{ display: { xs: "none", sm: "block" } }}>
           <img
             className="registerImage"
-            src={RegisterImage}
-            srcSet={RegisterImage}
-            alt="registerImage"
+            src={LoginImage}
+            srcSet={LoginImage}
+            alt="LoginImage"
           />
         </Grid>
       </Grid>
