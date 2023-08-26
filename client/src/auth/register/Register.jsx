@@ -36,7 +36,7 @@ const Register = () => {
     console.log(values);
   };
   return (
-    <Box sx={{ height: "100vh" }}>
+    <Box sx={{ height: "100vh",background:'#FAFBFE' }}>
       <Grid container>
         <Grid item xs={12} sm={5} md={5} lg={5}>
          

@@ -17,6 +17,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import './assets/css/login.css'
 
 const Login = () => {
   let [showPassword, setShowPassword] = useState(false);
@@ -36,11 +37,11 @@ const Login = () => {
     console.log(values);
   };
   return (
-    <Box sx={{ height: "100vh" }}>
+    <Box sx={{ height: "100vh",background:'#FAFBFE' }}>
       <Grid container>
         <Grid item xs={12} sm={5} md={5} lg={5}>
-          <Box component="div" className="registerContent">
-            <div className="registerUrlSet">
+          <Box component="div" className="loginContent">
+            <div className="loginUrlSet">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <img src={logo} style={{ width: 100 }} />
@@ -144,7 +145,7 @@ const Login = () => {
                   margin: "-5px 0",
                 }}
               >
-                Don't Have a Account? <Link to="/register">Register</Link>
+                Don't Have a Account? <Link  to="/register">Register</Link>
               </Typography>
             </div>
             <div style={{ margin: "50px 0", textAlign: "center" }}>
@@ -196,7 +197,7 @@ const Login = () => {
         </Grid>
         <Grid item xs={7} sx={{ display: { xs: "none", sm: "block" } }}>
           <img
-            className="registerImage"
+            className="loginImage"
             src={LoginImage}
             srcSet={LoginImage}
             alt="LoginImage"
