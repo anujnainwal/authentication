@@ -9,10 +9,14 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import "./assets/css/navbar.css";
 import { BiMenu, BiSearch, BiSolidUserCircle } from "react-icons/bi";
 // import MenuIcon from '@mui/icons-material/Menu';
 import { HiOutlineMail } from "react-icons/hi";
 import { IoMdNotificationsOutline, IoMdMore } from "react-icons/io";
+import UserProfile from "../Accounts/UserProfile";
+import { Drawer } from "@mui/material";
+import Sidebars from "../sideBar/Sidebars";
 // import SearchIcon from '@mui/icons-material/Search';
 // import AccountCircle from '@mui/icons-material/AccountCircle';
 
@@ -67,7 +71,7 @@ export default function Navbar() {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  const drawerWidth = 240;
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -76,8 +80,13 @@ export default function Navbar() {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+  const handleDrawerToggle = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
   const handleMobileMenuOpen = (event) => {
+ 
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -97,6 +106,7 @@ export default function Navbar() {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      className="profileSettings"
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
@@ -171,6 +181,7 @@ export default function Navbar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleDrawerToggle}
           >
             <BiMenu />
           </IconButton>
@@ -213,18 +224,8 @@ export default function Navbar() {
                 <IoMdNotificationsOutline />
               </Badge>
             </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-              sx={{ background: "#F6F6F7" }}
-            >
-              <BiSolidUserCircle />
-            </IconButton>
+
+            <UserProfile handleProfileMenuOpen={handleProfileMenuOpen} />
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -240,7 +241,9 @@ export default function Navbar() {
             </IconButton>
           </Box>
         </Toolbar>
+        <Sidebars />
       </AppBar>
+     
       {renderMobileMenu}
       {renderMenu}
     </Box>

@@ -1,0 +1,9 @@
+.profileSetting{
+    width: auto;
+    max-width: 15rem;;
+    display: flex;
+    
+}
+.userName{
+    font-size: 12px;
+}
