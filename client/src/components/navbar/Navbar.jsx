@@ -9,6 +9,9 @@ import {
   Menu,
   MenuItem,
   Badge,
+  Avatar,
+  Divider,
+  ListItemIcon,
 } from "@mui/material";
 
 import "./assets/css/navbar.css";
@@ -136,7 +139,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function Navbar() {
+export default function Navbar({children}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const theme = useTheme();
@@ -173,24 +176,68 @@ export default function Navbar() {
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={isMenuOpen}
       onClose={handleMenuClose}
+       
       className="profileSettings"
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
+        onClick={handleMenuClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&:before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <MenuItem onClick={handleMenuClose}>
+          <Avatar /> Profile
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Avatar /> My account
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleMenuClose}>
+          <ListItemIcon>
+            {/* <PersonAdd fontSize="small" /> */}
+          </ListItemIcon>
+          Add another account
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <ListItemIcon>
+            {/* <Settings fontSize="small" /> */}
+          </ListItemIcon>
+          Settings
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <ListItemIcon>
+            {/* <Logout fontSize="small" /> */}
+          </ListItemIcon>
+          Logout
+        </MenuItem>
+      </Menu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -293,8 +340,8 @@ export default function Navbar() {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="medium"
-              aria-label="show 4 new mails"
-              color="inherit"
+             
+             
             >
               <GrLanguage />
             </IconButton>
@@ -348,6 +395,7 @@ export default function Navbar() {
         open={open}
         handleDrawerClose={handleDrawerClose}
         handleDrawerOpen={handleDrawerOpen}
+        children={children}
       />
       {renderMobileMenu}
       {renderMenu}

@@ -1,5 +1,6 @@
 import {
   Box,
+  Collapse,
   CssBaseline,
   Divider,
   IconButton,
@@ -10,17 +11,36 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import React from "react";
-import {BsArrowLeftCircle} from "react-icons/bs"
-
-const Sidebars = ({
-  Drawer,
-  theme,
-  DrawerHeader,
-  open,
-  handleDrawerClose,
-  handleDrawerOpen,
-}) => {
+import React, { useState } from "react";
+import { BsArrowLeftCircle } from "react-icons/bs";
+import { AiOutlineDashboard } from "react-icons/ai";
+import { MdExpandLess, MdExpandMore } from "react-icons/md";
+import { RxCube } from "react-icons/rx";
+import DashboardLogo from "../../assets/commonLogo.png";
+import CollpaseSide from "./collpaseSide/CollpaseSide";
+import { NavLink } from "react-router-dom";
+const Sidebars = ({ Drawer, theme, DrawerHeader, open, handleDrawerClose ,children}) => {
+  let [isOpen, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen(!isOpen);
+  };
+  let productCreate = [
+    {
+      id: 1,
+      title: "Product Create",
+      // icon: <RxCube />
+    },
+    {
+      id: 2,
+      title: "Product Edit",
+      // icon: <RxCube />
+    },
+    {
+      id: 3,
+      title: "Product Delete",
+      // icon: <RxCube />
+    },
+  ];
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -28,24 +48,55 @@ const Sidebars = ({
 
         <Drawer variant="permanent" open={open}>
           <DrawerHeader>
-           
+            <img
+              src={DashboardLogo}
+              alt="dashbord"
+              width={150}
+              style={{ textAlign: "left !important" }}
+            />
             <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl"
-                ? "<ChevronRightIcon />"
-                : <BsArrowLeftCircle />}
+              {theme.direction === "ltl" ? (
+                "<ChevronRightIcon />"
+              ) : (
+                <BsArrowLeftCircle />
+              )}
             </IconButton>
           </DrawerHeader>
           <Divider />
           <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                <ListItemButton
+            <ListItem disablePadding sx={{ display: "block" }}>
+              <NavLink to="/">
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
                   }}
                 >
+                  <AiOutlineDashboard fontSize={25} />
+                </ListItemIcon>
+
+                <ListItemText
+                  primary="Dashboard"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+              </NavLink>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <NavLink to="/products">
                   <ListItemIcon
                     sx={{
                       minWidth: 0,
@@ -53,12 +104,27 @@ const Sidebars = ({
                       justifyContent: "center",
                     }}
                   >
-                    {index % 2 === 0 ? "<InboxIcon />" : "<MailIcon />"}
+                    <RxCube fontSize={25} />
                   </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            ))}
+
+                  <ListItemText
+                    primary="Products"
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </NavLink>
+                {isOpen ? (
+                  <MdExpandLess onClick={handleClick} />
+                ) : (
+                  <MdExpandMore onClick={handleClick} />
+                )}
+              </ListItemButton>
+
+              <CollpaseSide
+                isOpen={isOpen}
+                text="update"
+                data={productCreate}
+              />
+            </ListItem>
           </List>
           <Divider />
           <List>
@@ -88,36 +154,7 @@ const Sidebars = ({
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-            dolor purus non enim praesent elementum facilisis leo vel. Risus at
-            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
-            rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
-            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-            vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-          </Typography>
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-            elementum integer enim neque volutpat ac tincidunt. Ornare
-            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
-            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
-            ornare massa eget egestas purus viverra accumsan in. In hendrerit
-            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
-            aliquam sem et tortor. Habitant morbi tristique senectus et.
-            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
-            euismod elementum nisi quis eleifend. Commodo viverra maecenas
-            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography>
+        {children}
         </Box>
       </Box>
     </>
