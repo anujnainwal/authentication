@@ -12,10 +12,10 @@ const UserProfile = ({ handleProfileMenuOpen }) => {
       >
         <Box component="div">
           <img
-            src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            src="https://assetsio.reedpopcdn.com/450-ced97u.jpg?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp"
             alt="userprofile"
             className="userProfilePic"
-            style={{ width: 50, marginRight: 8 }}
+            style={{ width: 50, marginRight: 8,height:50 }}
           />
         </Box>
         <Box>

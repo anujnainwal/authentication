@@ -15,7 +15,7 @@ const CollpaseSide = ({ isOpen, text, data }) => {
           <List key={index}>
             <ListItemButton>
               <ListItemIcon>
-                <img src={item.icon} alt="" />
+               {item.icon} 
               </ListItemIcon>
               <ListItemText primary={item.title} />
             </ListItemButton>
