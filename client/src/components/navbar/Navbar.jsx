@@ -13,7 +13,6 @@ import {
   Divider,
   ListItemIcon,
 } from "@mui/material";
-
 import "./assets/css/navbar.css";
 import {
   BiMenu,
@@ -25,12 +24,11 @@ import { HiOutlineMail } from "react-icons/hi";
 import { IoMdNotificationsOutline, IoMdMore } from "react-icons/io";
 import { GrLanguage } from "react-icons/gr";
 import UserProfile from "../Accounts/UserProfile";
-
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
-
 import { useTheme } from "@emotion/react";
 import Sidebars from "../sidebars/Sidebars";
+import { useLocation } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -140,20 +138,29 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Navbar({ children }) {
-  let isSidebarOpen = localStorage.getItem("isOpen");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const theme = useTheme();
-  const [open, setOpen] = React.useState(isSidebarOpen);
+  const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    var open1 = localStorage.getItem("isOpen");
+    if (open1 == "false") {
+      setOpen(false);
+    }
+    if (open1 == "true") {
+      setOpen(true);
+    }
+  }, []);
 
   const handleDrawerOpen = () => {
-    localStorage.setItem("isOpen", open);
+    localStorage.setItem("isOpen", true);
     setOpen(true);
   };
 
   const handleDrawerClose = () => {
+    localStorage.setItem("isOpen", false);
     setOpen(false);
-    localStorage.setItem("isOpen", open);
   };
 
   const isMenuOpen = Boolean(anchorEl);
@@ -176,7 +183,6 @@ export default function Navbar({ children }) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -212,12 +218,9 @@ export default function Navbar({ children }) {
         },
       }}
       transformOrigin={{ horizontal: "right", vertical: "top" }}
-      anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-    >
+      anchorOrigin={{ horizontal: "right", vertical: "bottom" }}>
       <MenuItem onClick={handleMenuClose}>
-     
-          <Avatar src="https://assetsio.reedpopcdn.com/450-ced97u.jpg?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp" />
-    
+        <Avatar src="https://assetsio.reedpopcdn.com/450-ced97u.jpg?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp" />
         Ada Wong
       </MenuItem>
       <Divider />
@@ -251,15 +254,13 @@ export default function Navbar({ children }) {
         horizontal: "right",
       }}
       open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
+      onClose={handleMobileMenuClose}>
       <MenuItem>
         <IconButton
           size="large"
           aria-label="show 4 new mails"
           color="inherit"
-          sx={{ background: "#F6F6F7" }}
-        >
+          sx={{ background: "#F6F6F7" }}>
           <Badge badgeContent={4} color="error">
             <HiOutlineMail />
           </Badge>
@@ -271,8 +272,7 @@ export default function Navbar({ children }) {
           sx={{ background: "#F6F6F7" }}
           size="large"
           aria-label="show 17 new notifications"
-          color="inherit"
-        >
+          color="inherit">
           <Badge badgeContent={17} color="error">
             <IoMdNotificationsOutline />
           </Badge>
@@ -285,8 +285,7 @@ export default function Navbar({ children }) {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
-        >
+          color="inherit">
           <BiSolidUserCircle />
         </IconButton>
         <p>Profile</p>
@@ -299,8 +298,7 @@ export default function Navbar({ children }) {
       <AppBar
         position="fixed"
         open={open}
-        sx={{ background: "#FFFFFF", color: "#000" }}
-      >
+        sx={{ background: "#FFFFFF", color: "#000" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -311,16 +309,14 @@ export default function Navbar({ children }) {
               marginRight: 5,
               ...(open && { display: "none" }),
             }}
-            onClick={handleDrawerOpen}
-          >
+            onClick={handleDrawerOpen}>
             <BiMenu />
           </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
+            sx={{ display: { xs: "none", sm: "block" } }}>
             MUI
           </Typography>
           <Search>
@@ -340,15 +336,13 @@ export default function Navbar({ children }) {
             <IconButton
               size="medium"
               aria-label="show 4 new mails"
-              color="inherit"
-            >
+              color="inherit">
               <BiFullscreen />
             </IconButton>
             <IconButton
               size="medium"
               aria-label="show 4 new mails"
-              color="inherit"
-            >
+              color="inherit">
               <Badge badgeContent={4} color="error">
                 <HiOutlineMail />
               </Badge>
@@ -356,8 +350,7 @@ export default function Navbar({ children }) {
             <IconButton
               size="medium"
               aria-label="show 17 new notifications"
-              color="inherit"
-            >
+              color="inherit">
               <Badge badgeContent={17} color="error">
                 <IoMdNotificationsOutline />
               </Badge>
@@ -373,8 +366,7 @@ export default function Navbar({ children }) {
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
-              sx={{ background: "#F6F6F7" }}
-            >
+              sx={{ background: "#F6F6F7" }}>
               <IoMdMore />
             </IconButton>
           </Box>

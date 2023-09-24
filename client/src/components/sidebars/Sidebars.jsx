@@ -22,7 +22,7 @@ import {
 import { RxCube } from "react-icons/rx";
 import DashboardLogo from "../../assets/commonLogo.png";
 import CollpaseSide from "./collpaseSide/CollpaseSide";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 const Sidebars = ({
   Drawer,
   theme,
@@ -31,9 +31,11 @@ const Sidebars = ({
   handleDrawerClose,
   children,
 }) => {
-  let [isOpen, setOpen] = useState(false);
-  const handleClick = () => {
-    setOpen(!isOpen);
+  let [isExpand, setIsExpand] = useState(false);
+  const location = useLocation();
+  console.log(location.pathname);
+  const menuItemExpand = () => {
+    setIsExpand(!isExpand);
   };
   let productCreate = [
     {
@@ -41,17 +43,8 @@ const Sidebars = ({
       title: "Product Create",
       icon: <AiOutlineEdit fontSize={20} />,
     },
-    {
-      id: 2,
-      title: "Product Edit",
-      icon: <MdSystemUpdateAlt fontSize={20} />,
-    },
-    {
-      id: 3,
-      title: "Product Delete",
-      icon: <MdOutlineDeleteOutline fontSize={20} />,
-    },
   ];
+
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -82,15 +75,13 @@ const Sidebars = ({
                     minHeight: 48,
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
-                  }}
-                >
+                  }}>
                   <ListItemIcon
                     sx={{
                       minWidth: 0,
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
-                    }}
-                  >
+                    }}>
                     <AiOutlineDashboard fontSize={25} />
                   </ListItemIcon>
 
@@ -106,14 +97,13 @@ const Sidebars = ({
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
-              >
+                onClick={menuItemExpand}>
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
-                  }}
-                >
+                  }}>
                   <RxCube fontSize={25} />
                 </ListItemIcon>
 
@@ -121,16 +111,10 @@ const Sidebars = ({
                   primary="Products"
                   sx={{ opacity: open ? 1 : 0 }}
                 />
-
-                {isOpen ? (
-                  <MdExpandLess onClick={handleClick} />
-                ) : (
-                  <MdExpandMore onClick={handleClick} />
-                )}
               </ListItemButton>
 
               <CollpaseSide
-                isOpen={isOpen}
+                isExpand={isExpand}
                 text="update"
                 data={productCreate}
               />

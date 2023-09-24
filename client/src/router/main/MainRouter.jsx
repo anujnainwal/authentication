@@ -1,20 +1,37 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Register from "../../auth/register/Register";
-import Login from "../../auth/login/Login";
-import ForgetPassword from "../../auth/forgetPassword/ForgetPassword";
+import React, { lazy, Suspense } from "react";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+
+const Login = lazy(() => import("../../auth/login/Login"));
+const ForgetPassword = lazy(() =>
+  import("../../auth/forgetPassword/ForgetPassword")
+);
+const Register = lazy(() => import("../../auth/register/Register"));
 import NotFoundError from "../../pages/notFound/NotFoundError";
 import Home from "../../pages/home/Home";
-import Products from "../../pages/products/Products"
+import Products from "../../pages/products/Products";
 const MainRouter = () => {
   return (
-    <>   
+    <>
       <Routes>
-   
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Navigate to="/home/dashboard" />} />
+        <Route path="/home/dashboard" element={<Home />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/register"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Register />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Login />
+            </Suspense>
+          }
+        />
         <Route path="/forgotPassword" element={<ForgetPassword />} />
         <Route path="/*" element={<NotFoundError />} />
       </Routes>

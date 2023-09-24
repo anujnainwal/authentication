@@ -4,21 +4,22 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Tooltip,
 } from "@mui/material";
 import React from "react";
 
-const CollpaseSide = ({ isOpen, text, data }) => {
+const CollpaseSide = ({ isExpand, text, data }) => {
   return (
-    <Collapse in={isOpen} timeout="auto" unmountOnExit>
+    <Collapse in={isExpand} timeout="auto" unmountOnExit>
       {data.map((item, index) => {
         return (
           <List key={index}>
-            <ListItemButton>
-              <ListItemIcon>
-               {item.icon} 
-              </ListItemIcon>
-              <ListItemText primary={item.title} />
-            </ListItemButton>
+            <Tooltip title={item.title} placement="top-start">
+              <ListItemButton>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.title} />
+              </ListItemButton>
+            </Tooltip>
           </List>
         );
       })}
