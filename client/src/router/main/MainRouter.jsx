@@ -9,13 +9,15 @@ const Register = lazy(() => import("../../auth/register/Register"));
 import NotFoundError from "../../pages/notFound/NotFoundError";
 import Home from "../../pages/home/Home";
 import Products from "../../pages/products/Products";
+import Categories from "../../pages/categories/Categories";
 const MainRouter = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Navigate to="/home/dashboard" />} />
         <Route path="/home/dashboard" element={<Home />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/home/products" element={<Products />} />
+        <Route path="/home/categories" element={<Categories />} />
         <Route
           path="/register"
           element={

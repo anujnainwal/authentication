@@ -1,0 +1,17 @@
+.dashboardCount{
+    
+    height: 8em;
+    width: 15rem;
+    margin: 10px 10px;
+    border-radius: 10px !important;
+}
+.topBanner1{
+    background: orange;
+    padding: 10px;
+    height: 100%;
+    border-radius: 10px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}

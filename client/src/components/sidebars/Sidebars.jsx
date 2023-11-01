@@ -1,6 +1,5 @@
 import {
   Box,
-  Collapse,
   CssBaseline,
   Divider,
   IconButton,
@@ -9,125 +8,194 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Tooltip,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { BsArrowLeftCircle } from "react-icons/bs";
+import { MdExpandLess, MdExpandMore } from "react-icons/md";
+import { BiCategoryAlt } from "react-icons/bi";
 import { AiOutlineDashboard, AiOutlineEdit } from "react-icons/ai";
-import {
-  MdExpandLess,
-  MdExpandMore,
-  MdSystemUpdateAlt,
-  MdOutlineDeleteOutline,
-} from "react-icons/md";
 import { RxCube } from "react-icons/rx";
 import DashboardLogo from "../../assets/commonLogo.png";
 import CollpaseSide from "./collpaseSide/CollpaseSide";
 import { NavLink, useLocation } from "react-router-dom";
-const Sidebars = ({
-  Drawer,
-  theme,
-  DrawerHeader,
-  open,
-  handleDrawerClose,
-  children,
-}) => {
-  let [isExpand, setIsExpand] = useState(false);
-  const location = useLocation();
-  console.log(location.pathname);
-  const menuItemExpand = () => {
-    setIsExpand(!isExpand);
-  };
-  let productCreate = [
-    {
-      id: 1,
-      title: "Product Create",
-      icon: <AiOutlineEdit fontSize={20} />,
-    },
-  ];
+import "./assets/css/sidebars.css";
+const Sidebars = memo(
+  ({ Drawer, theme, DrawerHeader, open, handleDrawerClose, children }) => {
+    let [isExpand, setIsExpand] = useState(false);
+    const location = useLocation();
 
-  return (
-    <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
+    const menuItemExpand = () => {
+      setIsExpand(!isExpand);
+    };
+    let productCreate = [
+      {
+        id: 1,
+        title: "Product Create",
+        path: "/createProduct",
+        icon: <AiOutlineEdit fontSize={20} />,
+      },
+    ];
 
-        <Drawer variant="permanent" open={open}>
-          <DrawerHeader>
-            <img
-              src={DashboardLogo}
-              alt="dashbord"
-              width={150}
-              style={{ textAlign: "left !important" }}
-            />
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "ltl" ? (
-                "<ChevronRightIcon />"
-              ) : (
-                <BsArrowLeftCircle />
-              )}
-            </IconButton>
-          </DrawerHeader>
-          <Divider />
-          <List>
-            <ListItem disablePadding sx={{ display: "block" }}>
-              <NavLink to="/">
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}>
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}>
-                    <AiOutlineDashboard fontSize={25} />
-                  </ListItemIcon>
+    return (
+      <>
+        <Box sx={{ display: "flex" }}>
+          <CssBaseline />
 
-                  <ListItemText
-                    primary="Dashboard"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </NavLink>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-                onClick={menuItemExpand}>
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}>
-                  <RxCube fontSize={25} />
-                </ListItemIcon>
-
-                <ListItemText
-                  primary="Products"
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-
-              <CollpaseSide
-                isExpand={isExpand}
-                text="update"
-                data={productCreate}
+          <Drawer variant="permanent" open={open}>
+            <DrawerHeader>
+              <img
+                src={DashboardLogo}
+                alt="dashbord"
+                width={150}
+                style={{ textAlign: "left !important" }}
               />
-            </ListItem>
-          </List>
-        </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <DrawerHeader />
-          {children}
+              <IconButton onClick={handleDrawerClose}>
+                {theme.direction === "ltl" ? (
+                  "<ChevronRightIcon />"
+                ) : (
+                  <BsArrowLeftCircle />
+                )}
+              </IconButton>
+            </DrawerHeader>
+            <Divider />
+            <List>
+              <ListItem disablePadding sx={{ display: "block" }}>
+                <NavLink to="/home/dashboard">
+                  <ListItemButton
+                    className={`${
+                      location.pathname === "/home/dashboard" ? "active" : ""
+                    }`}
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}>
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}>
+                      <AiOutlineDashboard
+                        fontSize={25}
+                        color={`${
+                          location.pathname === "/home/dashboard" ? "white" : ""
+                        }`}
+                      />
+                    </ListItemIcon>
+
+                    <ListItemText
+                      primary="Dashboard"
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </NavLink>
+                <NavLink to="/home/products">
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                    className={`${
+                      location.pathname === "/home/products" ? "active" : ""
+                    }`}>
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}>
+                      <RxCube
+                        fontSize={25}
+                        onClick={menuItemExpand}
+                        color={`${
+                          location.pathname === "/home/products" ? "#fff" : ""
+                        }`}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Products"
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                    <IconButton
+                      sx={{ display: { sm: "none", md: "block" } }}
+                      onClick={menuItemExpand}>
+                      {open === true && (
+                        <>
+                          {isExpand ? (
+                            <MdExpandLess
+                              color={`${
+                                location.pathname === "/home/products"
+                                  ? "#fff"
+                                  : ""
+                              }`}
+                            />
+                          ) : (
+                            <MdExpandMore
+                              color={`${
+                                location.pathname === "/home/products"
+                                  ? "#fff"
+                                  : ""
+                              }`}
+                            />
+                          )}
+                        </>
+                      )}
+                    </IconButton>
+                  </ListItemButton>
+                  <CollpaseSide
+                    isExpand={isExpand}
+                    text="update"
+                    data={productCreate}
+                  />
+                </NavLink>
+                <NavLink to="/home/categories">
+                  <Tooltip title="categioes">
+                    <ListItemButton
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? "initial" : "center",
+                        px: 2.5,
+                      }}
+                      className={`${
+                        location.pathname === "/home/categories" ? "active" : ""
+                      }`}>
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : "auto",
+                          justifyContent: "center",
+                        }}>
+                        <BiCategoryAlt
+                          fontSize={25}
+                          color={`${
+                            location.pathname === "/home/categories"
+                              ? "#fff"
+                              : ""
+                          }`}
+                        />
+                      </ListItemIcon>
+
+                      <ListItemText
+                        primary="Category"
+                        sx={{ opacity: open ? 1 : 0 }}
+                      />
+                    </ListItemButton>
+                  </Tooltip>
+                </NavLink>
+              </ListItem>
+            </List>
+          </Drawer>
+          <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
+            <DrawerHeader />
+            {children}
+          </Box>
         </Box>
-      </Box>
-    </>
-  );
-};
+      </>
+    );
+  }
+);
 
 export default Sidebars;
