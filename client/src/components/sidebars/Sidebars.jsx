@@ -31,6 +31,12 @@ const Sidebars = memo(
     let productCreate = [
       {
         id: 1,
+        title: "Product List",
+        path: "/products/productList",
+        icon: <AiOutlineEdit fontSize={20} />,
+      },
+      {
+        id: 2,
         title: "Product Create",
         path: "/createProduct",
         icon: <AiOutlineEdit fontSize={20} />,
@@ -91,66 +97,66 @@ const Sidebars = memo(
                     />
                   </ListItemButton>
                 </NavLink>
-                <NavLink to="/home/products">
-                  <ListItemButton
+
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                  className={`${
+                    location.pathname === "/home/products" ? "active" : ""
+                  }`}>
+                  <ListItemIcon
                     sx={{
-                      minHeight: 48,
-                      justifyContent: open ? "initial" : "center",
-                      px: 2.5,
-                    }}
-                    className={`${
-                      location.pathname === "/home/products" ? "active" : ""
-                    }`}>
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : "auto",
-                        justifyContent: "center",
-                      }}>
-                      <RxCube
-                        fontSize={25}
-                        onClick={menuItemExpand}
-                        color={`${
-                          location.pathname === "/home/products" ? "#fff" : ""
-                        }`}
-                      />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary="Products"
-                      sx={{ opacity: open ? 1 : 0 }}
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}>
+                    <RxCube
+                      fontSize={25}
+                      onClick={menuItemExpand}
+                      color={`${
+                        location.pathname === "/home/products" ? "#fff" : ""
+                      }`}
                     />
-                    <IconButton
-                      sx={{ display: { sm: "none", md: "block" } }}
-                      onClick={menuItemExpand}>
-                      {open === true && (
-                        <>
-                          {isExpand ? (
-                            <MdExpandLess
-                              color={`${
-                                location.pathname === "/home/products"
-                                  ? "#fff"
-                                  : ""
-                              }`}
-                            />
-                          ) : (
-                            <MdExpandMore
-                              color={`${
-                                location.pathname === "/home/products"
-                                  ? "#fff"
-                                  : ""
-                              }`}
-                            />
-                          )}
-                        </>
-                      )}
-                    </IconButton>
-                  </ListItemButton>
-                  <CollpaseSide
-                    isExpand={isExpand}
-                    text="update"
-                    data={productCreate}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Products"
+                    sx={{ opacity: open ? 1 : 0 }}
                   />
-                </NavLink>
+                  <IconButton
+                    sx={{ display: { sm: "none", md: "block" } }}
+                    onClick={menuItemExpand}>
+                    {open === true && (
+                      <>
+                        {isExpand ? (
+                          <MdExpandLess
+                            color={`${
+                              location.pathname === "/home/products"
+                                ? "#fff"
+                                : ""
+                            }`}
+                          />
+                        ) : (
+                          <MdExpandMore
+                            color={`${
+                              location.pathname === "/home/products"
+                                ? "#fff"
+                                : ""
+                            }`}
+                          />
+                        )}
+                      </>
+                    )}
+                  </IconButton>
+                </ListItemButton>
+                <CollpaseSide
+                  isExpand={isExpand}
+                  text="update"
+                  data={productCreate}
+                />
+
                 <NavLink to="/home/categories">
                   <Tooltip title="categioes">
                     <ListItemButton

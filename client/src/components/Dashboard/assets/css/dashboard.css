@@ -1,17 +1,63 @@
-.dashboardCount{
-    
-    height: 8em;
-    width: 15rem;
-    margin: 10px 10px;
-    border-radius: 10px !important;
+.dashboardCount {
+  height: 8em;
+  min-width: 18rem;
+  margin: 10px 10px;
+  border-radius: 10px !important;
+  cursor: pointer;
 }
-.topBanner1{
-    background: orange;
-    padding: 10px;
-    height: 100%;
-    border-radius: 10px !important;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
+
+.topBanner1,
+.topBanner2,
+.topBanner3,
+.topBanner4 {
+  background: orange;
+  padding: 1.5em;
+  height: 100%;
+  border-radius: 10px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.topBanner2 {
+  background: #00cfe8;
+}
+
+.topBanner3 {
+  background: #1b2850;
+}
+
+.topBanner4 {
+  background: #28c76f;
+}
+
+.icons1,
+.icons2,
+.icons3,
+.icons4 {
+  font-size: 40px;
+  transition: 0.5s ease-in;
+}
+
+.dashboardCount:hover .icons1 {
+  font-size: 60px;
+}
+
+.dashboardCount:hover .icons2 {
+  font-size: 60px;
+}
+
+.dashboardCount:hover .icons3 {
+  font-size: 60px;
+}
+
+.dashboardCount:hover .icons4 {
+  font-size: 60px;
+}
+
+@media screen and (max-width: 900px) {
+    .dashboardCount {
+        width: 100% !important;
+    }
 }
