@@ -1,0 +1,16 @@
+.columnCenter{
+    text-align: center;
+}
+
+.admin{
+    background: #6A1B9A;
+    color: #fff;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.actionIcon{
+    font-size: 18px;
+}

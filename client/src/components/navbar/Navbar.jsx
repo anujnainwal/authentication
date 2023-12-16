@@ -159,8 +159,8 @@ export default function Navbar({ children }) {
   };
 
   const handleDrawerClose = () => {
-    localStorage.setItem("isOpen", false);
-    setOpen(false);
+    localStorage.setItem("isOpen", !opener);
+    setOpen(!open);
   };
 
   const isMenuOpen = Boolean(anchorEl);
@@ -298,7 +298,7 @@ export default function Navbar({ children }) {
       <AppBar
         position="fixed"
         open={open}
-        sx={{ background: "#FFFFFF", color: "#000" }}>
+        sx={{ background: "#FFFFFF", color: "#000", zIndex: 1 }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -310,7 +310,7 @@ export default function Navbar({ children }) {
               ...(open && { display: "none" }),
             }}
             onClick={handleDrawerOpen}>
-            <BiMenu />
+            <BiMenu fontSize={30} />
           </IconButton>
           <Typography
             variant="h6"
@@ -363,6 +363,7 @@ export default function Navbar({ children }) {
               size="large"
               aria-label="show more"
               aria-controls={mobileMenuId}
+              // handleDrawerClose
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"

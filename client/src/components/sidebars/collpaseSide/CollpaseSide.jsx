@@ -15,6 +15,7 @@ const CollpaseSide = ({ isExpand, text, data }) => {
       {data.map((item, index) => {
         return (
           <List key={index}>
+            {console.log(item)}
             <NavLink to={`${item.path}`}>
               <Tooltip title={item.title} placement="top-start">
                 <ListItemButton>

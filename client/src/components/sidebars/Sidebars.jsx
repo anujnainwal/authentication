@@ -19,6 +19,7 @@ import { RxCube } from "react-icons/rx";
 import DashboardLogo from "../../assets/commonLogo.png";
 import CollpaseSide from "./collpaseSide/CollpaseSide";
 import { NavLink, useLocation } from "react-router-dom";
+import { FaClipboardList } from "react-icons/fa";
 import "./assets/css/sidebars.css";
 const Sidebars = memo(
   ({ Drawer, theme, DrawerHeader, open, handleDrawerClose, children }) => {
@@ -33,12 +34,12 @@ const Sidebars = memo(
         id: 1,
         title: "Product List",
         path: "/products/productList",
-        icon: <AiOutlineEdit fontSize={20} />,
+        icon: <FaClipboardList fontSize={20} />,
       },
       {
         id: 2,
         title: "Product Create",
-        path: "/createProduct",
+        path: "/products/createProduct",
         icon: <AiOutlineEdit fontSize={20} />,
       },
     ];
@@ -48,7 +49,7 @@ const Sidebars = memo(
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
 
-          <Drawer variant="permanent" open={open}>
+          <Drawer variant="permanent" open={open} anchor="left">
             <DrawerHeader>
               <img
                 src={DashboardLogo}
@@ -57,12 +58,14 @@ const Sidebars = memo(
                 style={{ textAlign: "left !important" }}
               />
               <IconButton onClick={handleDrawerClose}>
-                {theme.direction === "ltl" ? (
+                {open ? "close" : "open"}
+                {/* {theme.direction === "ltl" ? (
                   "<ChevronRightIcon />"
                 ) : (
                   <BsArrowLeftCircle />
-                )}
+                )} */}
               </IconButton>
+              {open ? true : false}
             </DrawerHeader>
             <Divider />
             <List>
@@ -134,7 +137,7 @@ const Sidebars = memo(
                           <MdExpandLess
                             color={`${
                               location.pathname === "/home/products"
-                                ? "#fff"
+                                ? "red"
                                 : ""
                             }`}
                           />
